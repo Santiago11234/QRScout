@@ -206,6 +206,7 @@
             "3": "Very Effective",
             "x": "Not Observed"
           },
+          "defaultValue": "0",
           "required": false
         },
         {
@@ -218,7 +219,7 @@
             "3": "Very Effective",
             "x": "Not Observed"
           },
-          "defaultValue": "x",
+          "defaultValue": "0",
           "required": false
         },
         {
