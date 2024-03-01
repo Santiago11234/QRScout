@@ -11,6 +11,11 @@ export function App() {
   const formData = useQRScoutState(state => state.formData);
   const [showQR, setShowQR] = useState(false);
 
+  // add stuff to write to the json file i have defined
+  const onCommit =() => {
+    setShowQR(true);
+  }
+
   return (
     <div className="min-h-screen py-2 dark:bg-gray-700">
       <Header />
@@ -23,7 +28,7 @@ export function App() {
         <form className="w-full px-4">
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             <Sections />
-            <CommitAndResetSection onCommit={() => setShowQR(true)} />
+            <CommitAndResetSection onCommit={onCommit} />
             <ConfigSection />
           </div>
         </form>

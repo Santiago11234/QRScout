@@ -170,11 +170,11 @@
           "required": true,
           "code": "epo",
           "choices": {
-            "No": "No Climb",
-            "Fc": "Failed Climb",
-            "P": "Parked",
-            "Os": "Onstage",
-            "Sl": "Spotlight"
+            "0": "No Climb",
+            "1": "Failed Climb",
+            "2": "Parked",
+            "3": "Onstage",
+            "4": "Spotlight"
           },
           "defaultValue": "No Climb"
         },
@@ -206,6 +206,7 @@
             "3": "Very Effective",
             "x": "Not Observed"
           },
+          "defaultValue": "0",
           "required": false
         },
         {
@@ -218,7 +219,7 @@
             "3": "Very Effective",
             "x": "Not Observed"
           },
-          "defaultValue": "x",
+          "defaultValue": "0",
           "required": false
         },
         {
