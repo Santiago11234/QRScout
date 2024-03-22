@@ -23,6 +23,7 @@ const DataMain = () => {
  }, []);
 
  const handleSearch = (event: Event) => {
+    setTeamNumber(0);
     setSearchTerm((event.target as HTMLInputElement).value);
  };
 
