@@ -1,5 +1,6 @@
 type Game = {
     gameId: string;
+    scouterInitials: string;
     teamNumber: number;
     noShow: number;
     mobility: number;

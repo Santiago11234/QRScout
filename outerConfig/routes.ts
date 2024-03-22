@@ -80,6 +80,10 @@ export async function addGame(gameData: Game): Promise<void> {
  const teamDocRef = doc(teamsCollection, teamNumber.toString());
  const teamDocSnap = await getDoc(teamDocRef);
 
+ const gamesCollection = collection(db, "games");
+ const gameDocRef = await addDoc(gamesCollection, gameData);
+
+
  if (teamDocSnap.exists()) {
     const teamData = teamDocSnap.data() as Team;
     const newGamesPlayed = teamData.gamesPlayed.length;
@@ -108,7 +112,8 @@ export async function addGame(gameData: Game): Promise<void> {
        avgDied: (teamData.avgDied * newGamesPlayed + gameData.died) / (newGamesPlayed + 1),
        avgTippedOver: (teamData.avgTippedOver * newGamesPlayed + gameData.tippedOver) / (newGamesPlayed + 1),
        avgCards: (teamData.avgCards * newGamesPlayed + gameData.cards) / (newGamesPlayed + 1),
-       gamesPlayed: [...teamData.gamesPlayed, gameData.gameId]
+       gamesPlayed: [...teamData.gamesPlayed, gameData.gameId],
+       comments: [...teamData.comments, gameData.comment],
     };
 
     await updateDoc(teamDocRef, {
@@ -142,10 +147,24 @@ export async function addGame(gameData: Game): Promise<void> {
        avgTippedOver: gameData.tippedOver,
        avgCards: gameData.cards,
        gamesPlayed: [gameData.gameId], 
-       comments: [],
+       comments: [gameData.comment],
     };
+
 
     await setDoc(teamDocRef, newTeam);
  }
 }
 
+export async function getGameById(gameId: string): Promise<Game | null> {
+ const gamesCollection = collection(db, "games");
+ const q = query(gamesCollection, where("gameId", "==", gameId));
+ const querySnapshot = await getDocs(q);
+
+ if (!querySnapshot.empty) {
+    const doc = querySnapshot.docs[0];
+    return doc.data() as Game;
+ } else {
+    console.log("No game found with the provided gameId!");
+    return null;
+ }
+}

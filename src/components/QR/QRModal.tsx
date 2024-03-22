@@ -2,34 +2,35 @@ import { useMemo, useRef } from 'preact/hooks';
 import QRCode from 'qrcode.react';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import { getFieldValue, useQRScoutState } from '../../store/store';
-import { Config } from '../inputs/BaseInputProps';
+import { Config, mapConfigToGame } from '../inputs/BaseInputProps';
 import { CloseButton } from './CloseButton';
 import { PreviewText } from './PreviewText';
 
+import Game from '@/types/game';
+
 export interface QRModalProps {
-  show: boolean;
-  onDismiss: () => void;
+ show: boolean;
+ onDismiss: () => void;
 }
 
+
 export function getQRCodeData(formData: Config): string {
-  return formData.sections
-    .map(s => s.fields)
-    .flat()
-    .map(v => `${v.value}`.replace(/\n/g, ' '))
-    .join('\t');
+ const gameData: Game = mapConfigToGame(formData);
+ console.log("pls work", JSON.stringify(gameData));
+ return JSON.stringify(gameData);
 }
 
 export function QRModal(props: QRModalProps) {
-  const modalRef = useRef(null);
-  const formData = useQRScoutState(state => state.formData);
-  useOnClickOutside(modalRef, props.onDismiss);
+ const modalRef = useRef(null);
+ const formData = useQRScoutState(state => state.formData);
+ useOnClickOutside(modalRef, props.onDismiss);
 
-  const title = `${getFieldValue('robot')} - M${getFieldValue(
+ const title = `${getFieldValue('robot')} - M${getFieldValue(
     'matchNumber',
-  )}`.toUpperCase();
+ )}`.toUpperCase();
 
-  const qrCodeData = useMemo(() => getQRCodeData(formData), [formData]);
-  return (
+ const qrCodeData = useMemo(() => getQRCodeData(formData), [formData]);
+ return (
     <>
       {props.show && (
         <>
@@ -51,5 +52,5 @@ export function QRModal(props: QRModalProps) {
         </>
       )}
     </>
-  );
+ );
 }

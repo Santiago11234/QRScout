@@ -7,10 +7,9 @@ import { CommitAndResetSection } from './components/Sections/CommitAndResetSecti
 import { ConfigSection } from './components/Sections/ConfigSection';
 import { useQRScoutState } from './store/store';
 
-import { addSampleTeam } from "../outerConfig/routes";
+// import { addSampleTeam } from "../outerConfig/routes";
 
 import  DataMain  from "./displayDataComponents/dataMain";
-import { set } from 'firebase/database';
 
 export function App() {
   const formData = useQRScoutState(state => state.formData);
@@ -19,7 +18,7 @@ export function App() {
 
   const onCommit = () => {
     setShowQR(true);
-    addSampleTeam();
+    // addSampleTeam();
   };
 
   return (

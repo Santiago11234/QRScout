@@ -5,8 +5,6 @@ import { ResetButton } from './ResetButton';
 
 import { addGame } from '../../../../outerConfig/routes';
 
-import Team from '@/types/teams';
-
 import Game from "@/types/game"
 
 export type CommitAndResetSectionProps = {
@@ -62,9 +60,16 @@ export function CommitAndResetSection({
         value={jsonInput}
         onChange={handleInputChange}
         placeholder="Enter JSON here"
+        className="mx-4 py-2 border border-gray-300 rounded-md mb-4 text-black rounded-md dark:bg-gray-800 dark:text-white"
       />
 
-      <button onClick={handleSubmit}>Submit</button>
+      <button
+      className="focus:shadow-outline mx-2 my-6 rounded bg-white py-2 font-bold uppercase text-red-rhr hover:bg-red-200 focus:outline-none dark:bg-gray-500 dark:text-white dark:hover:bg-gray-700"
+      type="button" onClick={handleSubmit}>
+        Submit
+      </button>
+
+
     </div>
  );
 }
