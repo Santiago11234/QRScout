@@ -223,6 +223,36 @@
           "required": false
         },
         {
+          "code": "wd",
+          "title": "Where Defend",
+          "type": "select",
+          "choices": {
+            "1": "Robots Side Left",
+            "2": "Robots Side Mid",
+            "3": "Robots Side Back",
+            "4": "Middle left",
+            "5": "Middle Mid",
+            "6": "Middle Right",
+            "7": "Opponent Left",
+            "8": "Opponent Mid",
+            "9": "Opponent Right",
+            "x": "Not Observed"
+          },
+          "defaultValue": "0",
+          "required": false
+        },
+        {
+          "code": "us",
+          "title": "Under Stage",
+          "type": "select",
+          "choices": {
+            "0": "Yes",
+            "1": "No"
+          },
+          "defaultValue": "0",
+          "required": false
+        },
+        {
           "code": "d",
           "title": "Died",
           "type": "boolean",
@@ -255,7 +285,8 @@
           "type": "text",
           "min": 0,
           "max": 50,
-          "required": false
+          "required": false,
+          "defaultValue": ""
         }
       ]
     }

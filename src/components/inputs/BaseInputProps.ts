@@ -60,7 +60,7 @@ export function mapConfigToGame(config: Config): Game {
      died: 0,
      tippedOver: 0,
      cards: 0,
-     comment: '',
+     comment: 'No Comment',
   };
  
   for (const section of config.sections) {
@@ -120,7 +120,7 @@ export function mapConfigToGame(config: Config): Game {
          game.died = (field.value);
        } else if (field.title === 'Tipped Over') {
          game.tippedOver = (field.value);
-       } else if (field.title === 'Comments') {
+       } else if (field.title === 'Comments' && field.value) {
          game.comment = field.value;
        } 
        // add the where defend stuff
