@@ -83,7 +83,8 @@ export async function addGame(gameData: Game): Promise<void> {
  const gamesCollection = collection(db, "games");
  const gameDocRef = await addDoc(gamesCollection, gameData);
 
-
+ let id = gameDocRef.id;
+ console.log(id)
  if (teamDocSnap.exists()) {
     const teamData = teamDocSnap.data() as Team;
     const newGamesPlayed = teamData.gamesPlayed.length;
