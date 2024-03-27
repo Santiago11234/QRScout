@@ -31,12 +31,12 @@ export interface InputProps {
   max?: number;
 }
 
-export function mapConfigToGame(config: Config): Game {
+export function mapConfigToGame(config: Config, teamNumber: number, matchNumber: number): Game {
   console.log('config:', config)
   const game: Game = {
      gameId: '', 
      scouterInitials: '',
-     teamNumber: 0,
+     teamNumber: teamNumber,
      noShow: 0,
      mobility: 0,
      autoAmpScored: 0,
@@ -69,7 +69,7 @@ export function mapConfigToGame(config: Config): Game {
        if (field.title === 'Scouter Initials') {
           game.scouterInitials = field.value;
        } else if (field.title === 'Match Number') {
-         game.gameId = field.value;
+         game.gameId = game.teamNumber + '-' + field.value ;
        } else if (field.title === 'Team Number') {
          game.teamNumber = parseInt(field.value, 10);
        } else if (field.title === 'No Show') {
@@ -121,7 +121,7 @@ export function mapConfigToGame(config: Config): Game {
        } else if (field.title === 'Tipped Over') {
          game.tippedOver = (field.value);
        } else if (field.title === 'Comments' && field.value) {
-         game.comment = field.value;
+         game.comment = matchNumber + ": " + field.value;
        } 
        // add the where defend stuff
     }

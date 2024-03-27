@@ -1,5 +1,6 @@
 import React from 'react';
 import Game from '@/types/game';
+type GameKeys = keyof Game;
 
 interface GameDetailsModalProps {
  isOpen: boolean;
@@ -10,6 +11,37 @@ interface GameDetailsModalProps {
 const GameDetailsModal: React.FC<GameDetailsModalProps> = ({ isOpen, closeModal, gameDetails }) => {
  if (!isOpen || !gameDetails) return null;
 
+ // Define the order in which you want the properties to be displayed
+ const orderedKeys: GameKeys[] = [
+   'gameId',
+   'scouterInitials',
+   'teamNumber',
+   'noShow',
+   'mobility',
+   'autoAmpScored',
+   'autoAmpMissed',
+   'autoSpeakerScored',
+   'autoSpeakerMissed',
+   'autoAutoFoul',
+   'coopertition',
+   'teleAmpScored',
+   'teleAmpMissed',
+   'teleSpeakerScored',
+   'teleSpeakerMissed',
+   'teleNoteInTrap',
+   'teleopFoul',
+   'endPosition',
+   'climbedTogether',
+   'offensiveSkill',
+   'defensiveSkill',
+   'whereDefend',
+   'underStage',
+   'died',
+   'tippedOver',
+   'cards',
+   'comment',
+ ];
+
  return (
     <div className="fixed z-50 inset-0 overflow-y-auto">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -18,14 +50,14 @@ const GameDetailsModal: React.FC<GameDetailsModalProps> = ({ isOpen, closeModal,
 
           <div className="bg-white px-4 pt-5 pb-4 sm:p-2 sm:pb-4 text-black">
             <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-              Game {gameDetails.gameId} Details
+              Game {gameDetails.gameId.substring(gameDetails.gameId.indexOf("-") + 1)} Details
             </h3>
             <div className="mt-2">
-              {Object.entries(gameDetails).map(([key, value]) => (
-                <p key={key} className="text-sm">
-                 {key}: {value}
-                </p>
-              ))}
+            {orderedKeys.map(key => (
+ <p key={key} className="text-sm">
+    {key}: {gameDetails[key]}
+ </p>
+))}
             </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

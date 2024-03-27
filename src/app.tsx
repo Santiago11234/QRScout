@@ -52,6 +52,19 @@ export function App() {
             >
               Data
             </a>
+
+            <a
+              href="#"
+              className="text-red-rhr font-bold py-2 px-4 rounded hover:bg-red-rhr hover:text-white transition-colors duration-200 w-full md:w-auto"
+              onClick={e => {
+                e.preventDefault();
+                setScouting(false);
+              }}
+            >
+            All games Ordered
+            </a>
+
+
           </div>
         </div>
 

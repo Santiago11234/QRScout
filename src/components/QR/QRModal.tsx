@@ -15,10 +15,29 @@ export interface QRModalProps {
 
 
 export function getQRCodeData(formData: Config): string {
- const gameData: Game = mapConfigToGame(formData);
- console.log("pls work", JSON.stringify(gameData));
- return JSON.stringify(gameData);
-}
+  const robotValue = getFieldValue('teamNumber');
+   let teamNumber;
+   let matchNumber
+   const robotMatchValue = getFieldValue('matchNumber');
+
+   if(!isNaN(Number(robotMatchValue))) {
+      matchNumber = parseInt(robotMatchValue, 10);
+   }
+   else {
+      console.error("The value for 'matchNumber' is not a number:", robotMatchValue);
+      matchNumber = 0;
+   }
+  if (!isNaN(Number(robotValue))) {
+     teamNumber = parseInt(robotValue, 10);
+  } else {     
+    console.error("The value for 'robot' is not a number:", robotValue);
+    teamNumber = 0;
+  }
+ 
+  const gameData: Game = mapConfigToGame(formData, teamNumber, matchNumber);
+  console.log("pls work", JSON.stringify(gameData));
+  return JSON.stringify(gameData);
+ }
 
 export function QRModal(props: QRModalProps) {
  const modalRef = useRef(null);
@@ -40,7 +59,7 @@ export function QRModal(props: QRModalProps) {
           />
           <div
             ref={modalRef}
-            className="fixed top-20 rounded-md bg-white border shadow-lg w-96"
+            className="fixed top-5 rounded-md bg-white border shadow-lg w-96"
           >
             <div className="flex flex-col items-center pt-8 ">
               <CloseButton onClick={props.onDismiss} />

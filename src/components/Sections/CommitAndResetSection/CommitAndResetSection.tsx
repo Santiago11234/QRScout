@@ -26,26 +26,26 @@ export function CommitAndResetSection({
       );
  }, [formData]);
 
- // State for JSON input
  const [jsonInput, setJsonInput] = useState('');
+ const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
- // Handle input change
  const handleInputChange = (event: Event) => {
     const target = event.target as HTMLInputElement;
     setJsonInput(target.value);
  };
 
- // Handle submit
- const handleSubmit = () => {
+ const handleSubmit = async () => {
     try {
       const game: Game = JSON.parse(jsonInput);
-      addGame(game);
-      // Optionally, clear the input field after successful submission
+      await addGame(game);
       setJsonInput('');
+      setShowSuccessPopup(true);
+      setTimeout(() => setShowSuccessPopup(false), 2000);
     } catch (error) {
       console.error('Invalid JSON format', error);
     }
  };
+
 
  return (
     <div className="mb-4 flex flex-col justify-center rounded bg-white py-2 shadow-md dark:bg-gray-600">
@@ -69,7 +69,13 @@ export function CommitAndResetSection({
         Submit
       </button>
 
-
+      {showSuccessPopup && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 success-popup">
+          <div className="bg-white p-4 rounded shadow-lg">
+            <p className="text-center text-lg font-bold text-black">Submission Successful</p>
+          </div>
+        </div>
+      )}
     </div>
  );
 }
