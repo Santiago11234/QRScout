@@ -58,10 +58,10 @@ const TeamData = ({ teamNumber }: { teamNumber: number }) => {
     return <div>No Team Selected</div>;
   }
 
-  const dataRows = Object.entries(teamData).map(([key, value]) => ({
-    title: key,
-    value: value,
-  }));
+  // const dataRows = Object.entries(teamData).map(([key, value]) => ({
+  //   title: key,
+  //   value: value,
+  // }));
 
   const openCommentsModal = () => {
     setIsCommentsModalOpen(true);
