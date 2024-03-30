@@ -23,7 +23,7 @@ export default function StringInput(props: StringInputProps) {
       onChange={handleChange}
       defaultValue={data?.defaultValue || ''}
       value={data?.value || ''}
-      maxlength={props.max}
+      maxlength={1000}
       minlength={props.min}
     />
   );
