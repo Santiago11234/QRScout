@@ -11,7 +11,7 @@ export function CommitButton(props: CommitButtonProps) {
       onClick={props.onClick}
       disabled={props.disabled}
     >
-      Commit
+      Get QR Code 
     </button>
   );
 }
