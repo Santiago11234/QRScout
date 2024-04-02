@@ -5,16 +5,20 @@ import { QRModal } from './components/QR';
 import { Sections } from './components/Sections';
 import { CommitAndResetSection } from './components/Sections/CommitAndResetSection/CommitAndResetSection';
 import { ConfigSection } from './components/Sections/ConfigSection';
+
 import { useQRScoutState } from './store/store';
 
 // import { addSampleTeam } from "../outerConfig/routes";
 
 import DataMain from './displayDataComponents/dataMain';
+import CategoirizeData from './displayDataComponents/categorizeData';
+
 
 export function App() {
   const formData = useQRScoutState(state => state.formData);
   const [showQR, setShowQR] = useState(false);
   const [scouting, setScouting] = useState(true);
+  const [seeCategories, setSeeCategories] = useState(false);
 
   const onCommit = () => {
     setShowQR(true);
@@ -25,7 +29,6 @@ export function App() {
     <div className="min-h-screen py-2 dark:bg-gray-700">
       <Header />
       <main className="flex flex-1 flex-col items-center justify-center px-4 text-center">
-
         <div className="w-full my-4 flex flex-col md:flex-row sm:flex-row justify-between items-center">
           <h1 className="font-sans text-6xl font-bold text-center w-full">
             <div className={`font-rhr text-red-rhr`}>{formData.page_title}</div>
@@ -38,6 +41,7 @@ export function App() {
               onClick={e => {
                 e.preventDefault();
                 setScouting(true);
+                setSeeCategories(false);
               }}
             >
               Scout
@@ -48,6 +52,7 @@ export function App() {
               onClick={e => {
                 e.preventDefault();
                 setScouting(false);
+                setSeeCategories(false);
               }}
             >
               Data
@@ -58,17 +63,16 @@ export function App() {
               className="text-red-rhr font-bold py-2 px-4 rounded hover:bg-red-rhr hover:text-white transition-colors duration-200 w-full md:w-auto"
               onClick={e => {
                 e.preventDefault();
+                setSeeCategories(true);
                 setScouting(false);
               }}
             >
-            All games Ordered
+              All games Ordered
             </a>
-
-
           </div>
         </div>
 
-        {scouting ? (
+        {scouting && !seeCategories && (
           <>
             <QRModal show={showQR} onDismiss={() => setShowQR(false)} />
 
@@ -80,11 +84,18 @@ export function App() {
               </div>
             </form>
           </>
-        ) : (
+        )}
+
+        {!scouting && !seeCategories && (
           <>
             <DataMain />
           </>
         )}
+
+        {seeCategories && !scouting &&
+         <>
+         <CategoirizeData/>
+        </>}
       </main>
       <Footer />
     </div>
