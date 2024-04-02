@@ -67,7 +67,7 @@ export function App() {
                 setScouting(false);
               }}
             >
-              All games Ordered
+              Sort Teams
             </a>
           </div>
         </div>
