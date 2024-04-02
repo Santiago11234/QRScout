@@ -53,9 +53,12 @@ export function mapConfigToGame(config: Config, teamNumber: number, matchNumber:
      teleopFoul: 0,
      endPosition: 0,
      climbedTogether: 0,
-     offensiveSkill: 0,
-     defensiveSkill: 0,
+     timeForIntake: 0,
+     ampRating: 0,
+     speakerRating: 0,
      whereDefend: [],
+     defenseScore: 0,
+     offenseScore: 0,
      underStage: 0,
      died: 0,
      tippedOver: 0,
@@ -112,10 +115,10 @@ export function mapConfigToGame(config: Config, teamNumber: number, matchNumber:
          game.endPosition = parseInt(field.value, 10);
        } else if (field.title === 'Total Robots Climbed On One Chain') {
          game.climbedTogether = parseInt(field.value, 10);
-       } else if (field.title === 'Offense Skill') {
-         game.offensiveSkill = parseInt(field.value, 10);
-       } else if (field.title === 'Defense Skill') {
-         game.defensiveSkill = parseInt(field.value, 10);
+       } else if (field.title === 'Offense Score') {
+         game.offenseScore = parseInt(field.value, 10);
+       } else if (field.title === 'Defense Score') {
+         game.defenseScore = parseInt(field.value, 10);
        } else if (field.title === 'Died') {
          game.died = (field.value);
        } else if (field.title === 'Tipped Over') {
@@ -123,7 +126,23 @@ export function mapConfigToGame(config: Config, teamNumber: number, matchNumber:
        } else if (field.title === 'Comments' && field.value) {
          game.comment = matchNumber + ": " + field.value;
        } 
-       // add the where defend stuff
+       else if (field.title === "Time For Intake From Source" && field.value) {
+         game.timeForIntake = parseInt(field.value, 10);
+       } else if (field.title === "Rate Amp" && field.value) {
+          game.ampRating = parseInt(field.value, 10);
+       }
+       else if (field.title === "Rate Speaker" && field.value) {
+        game.speakerRating = parseInt(field.value, 10);
+       }
+
+       else if(field.title === "Under Stage" && field.value) {
+          game.underStage = parseInt(field.value, 10);
+       }
+
+       else if(field.title === "Where Defend" && field.value) {
+          game.whereDefend = field.value;
+       }
+      
     }
    }
 

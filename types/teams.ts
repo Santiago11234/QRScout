@@ -16,9 +16,12 @@ type Team = {
     avgTeleopFoul: number;
     avgEndPosition: number;
     avgClimbedTogether: number;
-    avgOffensiveSkill: number;
-    avgDefensiveSkill: number;
+    avgTimeForIntake: number;
+    avgAmpRating: number;
+    avgSpeakerRating: number;
     whereDefend: number[];
+    avgDefenseScore: number;
+    avgOffenseScore: number;
     avgUnderStage: number;
     avgDied: number;
     avgTippedOver: number;

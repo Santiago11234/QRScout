@@ -190,38 +190,56 @@
             "3": "Three (Full Alliance)"
           },
           "defaultValue": "0"
+        },
+        {
+          "title": "Time For Intake From Source",
+          "type": "number",
+          "required": false,
+          "code": "intakeTime"
+        },
+        {
+          "code": "as",
+          "title": "Rate Amp",
+          "type": "select",
+          "choices": {
+            "1": "1 (worst)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10 (Best)"
+          },
+          "defaultValue": "0",
+          "required": false
+        },
+        {
+          "code": "ss",
+          "title": "Rate Speaker",
+          "type": "select",
+          "choices": {
+            "1": "1 (worst)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10 (Best)"
+          },
+          "defaultValue": "0",
+          "required": false
         }
       ]
     },
     {
       "name": "Postmatch",
       "fields": [
-        {
-          "code": "or",
-          "title": "Offense Skill",
-          "type": "select",
-          "choices": {
-            "1": "Not Effective",
-            "2": "Average",
-            "3": "Very Effective",
-            "x": "Not Observed"
-          },
-          "defaultValue": "0",
-          "required": false
-        },
-        {
-          "code": "dr",
-          "title": "Defense Skill",
-          "type": "select",
-          "choices": {
-            "1": "Not Effective",
-            "2": "Average",
-            "3": "Very Effective",
-            "x": "Not Observed"
-          },
-          "defaultValue": "0",
-          "required": false
-        },
         {
           "code": "wd",
           "title": "Where Defend",
@@ -255,7 +273,26 @@
             "7": "7",
             "8": "8",
             "9": "9",
-            "x": "10 (Best)"
+            "10": "10 (Best)"
+          },
+          "defaultValue": "0",
+          "required": false
+        },
+        {
+          "code": "os",
+          "title": "Offense Score",
+          "type": "select",
+          "choices": {
+            "1": "1 (worst)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10 (Best)"
           },
           "defaultValue": "0",
           "required": false

@@ -18,9 +18,12 @@ type Game = {
     teleopFoul: number;
     endPosition: number;
     climbedTogether: number;
-    offensiveSkill: number;
-    defensiveSkill: number;
+    timeForIntake: number;
+    ampRating: number;
+    speakerRating: number;
     whereDefend: number[];
+    defenseScore: number;
+    offenseScore: number;
     underStage: number;
     died: number;
     tippedOver: number;

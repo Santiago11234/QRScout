@@ -11,7 +11,6 @@ interface GameDetailsModalProps {
 const GameDetailsModal: React.FC<GameDetailsModalProps> = ({ isOpen, closeModal, gameDetails }) => {
  if (!isOpen || !gameDetails) return null;
 
- // Define the order in which you want the properties to be displayed
  const orderedKeys: GameKeys[] = [
    'gameId',
    'scouterInitials',
@@ -32,9 +31,12 @@ const GameDetailsModal: React.FC<GameDetailsModalProps> = ({ isOpen, closeModal,
    'teleopFoul',
    'endPosition',
    'climbedTogether',
-   'offensiveSkill',
-   'defensiveSkill',
-   'whereDefend',
+   'timeForIntake',
+    'ampRating',
+    'speakerRating',
+    'whereDefend',
+   'offenseScore',
+   'defenseScore',
    'underStage',
    'died',
    'tippedOver',
