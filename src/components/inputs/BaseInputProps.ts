@@ -43,27 +43,30 @@ export function mapConfigToGame(config: Config, teamNumber: number, matchNumber:
      autoAmpMissed: 0,
      autoSpeakerScored: 0,
      autoSpeakerMissed: 0,
-     autoAutoFoul: 0,
+    //  autoAutoFoul: 0,
      coopertition: 0,
      teleAmpScored: 0,
      teleAmpMissed: 0,
      teleSpeakerScored: 0,
      teleSpeakerMissed: 0,
      teleNoteInTrap: 0,
-     teleopFoul: 0,
+    //  teleopFoul: 0,
      endPosition: 0,
      climbedTogether: 0,
      timeForIntake: 0,
-     ampRating: 0,
-     speakerRating: 0,
-     whereDefend: [],
+    //  ampRating: 0,
+    //  speakerRating: 0,
+    //  whereDefend: [],
      defenseScore: 0,
-     offenseScore: 0,
+    //  offenseScore: 0,
      underStage: 0,
      died: 0,
      tippedOver: 0,
      cards: 0,
+     whereShot: 'No Comment',
      comment: 'No Comment',
+     foulComment: 'No Comment',
+     shuttleComment: 'No Comment',
   };
  
   for (const section of config.sections) {
@@ -103,20 +106,14 @@ export function mapConfigToGame(config: Config, teamNumber: number, matchNumber:
          } else if (section.name.toLowerCase().includes('tele')) {
            game.teleSpeakerMissed = parseInt(field.value, 10);
          }
-       } else if (field.title === 'Number of Auto Foul') {
-         game.autoAutoFoul = parseInt(field.value, 10);
        } else if (field.title === 'Coopertition') {
          game.coopertition = (field.value);
        } else if (field.title === 'Note in Trap?') {
          game.teleNoteInTrap = parseInt(field.value, 10);
-       } else if (field.title === 'Teleop Foul') {
-         game.teleopFoul = parseInt(field.value, 10);
        } else if (field.title === 'End Position') {
          game.endPosition = parseInt(field.value, 10);
        } else if (field.title === 'Total Robots Climbed On One Chain') {
          game.climbedTogether = parseInt(field.value, 10);
-       } else if (field.title === 'Offense Score') {
-         game.offenseScore = parseInt(field.value, 10);
        } else if (field.title === 'Defense Score') {
          game.defenseScore = parseInt(field.value, 10);
        } else if (field.title === 'Died') {
@@ -128,24 +125,23 @@ export function mapConfigToGame(config: Config, teamNumber: number, matchNumber:
        } 
        else if (field.title === "Time For Intake From Source" && field.value) {
          game.timeForIntake = parseInt(field.value, 10);
-       } else if (field.title === "Rate Amp" && field.value) {
-          game.ampRating = parseInt(field.value, 10);
-       }
-       else if (field.title === "Rate Speaker" && field.value) {
-        game.speakerRating = parseInt(field.value, 10);
-       }
-
+       } 
        else if(field.title === "Under Stage" && field.value) {
           game.underStage = parseInt(field.value, 10);
        }
 
-       else if(field.title === "Where Defend" && field.value) {
-          game.whereDefend = field.value;
+       else if(field.title === "Where Shot" && field.value) {
+          game.whereShot = matchNumber + ": " + field.value;
        }
-      
-    }
-   }
 
+       else if (field.title === 'Foul Comments' && field.value) {
+        game.foulComment = matchNumber + ": " + field.value;
+       } 
+      else if (field.title === 'Shuttling Comments' && field.value) {
+        game.shuttleComment = matchNumber + ": " + field.value; 
+      }
+    }
+  }
   console.log('game:', game)
  
   return game;

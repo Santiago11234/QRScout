@@ -5,13 +5,14 @@ import Game from '@/types/game';
 type TeamKeys = keyof Team;
 
 import CommentsModal from './commentsModal';
-import WhereDefendModal from './whereDefendModal';
 import GameDetailsModal from './gameModal';
 
 const TeamData = ({ teamNumber }: { teamNumber: number }) => {
   const [teamData, setTeamData] = useState<Team | null>(null);
   const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false);
-  const [isWhereDefendModalOpen, setIsWhereDefendModalOpen] = useState(false);
+  const [isFoulCommentsModalOpen, setIsFoulCommentsModalOpen] = useState(false);
+  const [isShuttleCommentsModalOpen, setIsShuttleCommentsModalOpen] = useState(false);
+  const [isWhereShotModalOpen, setIsWhereShotModalOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   //   const [currentSlide, setCurrentSlide] = useState(0);
   const [gameDetails, setGameDetails] = useState<Game[]>([]);
@@ -24,28 +25,31 @@ const TeamData = ({ teamNumber }: { teamNumber: number }) => {
     'avgAutoAmpMissed',
     'avgAutoSpeakerScored',
     'avgAutoSpeakerMissed',
-    'avgAutoAutoFoul',
+    // 'avgAutoAutoFoul',
     'avgCoopertition',
     'avgTeleAmpScored',
     'avgTeleAmpMissed',
     'avgTeleSpeakerScored',
     'avgTeleSpeakerMissed',
     'avgTeleNoteInTrap',
-    'avgTeleopFoul',
+    // 'avgTeleopFoul',
     'avgEndPosition',
     'avgClimbedTogether',
     'avgTimeForIntake',
-    'avgAmpRating',
-    'avgSpeakerRating',
-    'whereDefend',
+    // 'avgAmpRating',
+    // 'avgSpeakerRating',
+    // 'whereDefend',
     'avgDefenseScore',
-    'avgOffenseScore',
+    // 'avgOffenseScore',
     'avgUnderStage',
     'avgDied',
     'avgTippedOver',
     'avgCards',
     'gamesPlayed',
+    'whereShot',
     'comments',
+    'foulComments',
+    'shuttleComments',
   ];
 
   useEffect(() => {
@@ -74,14 +78,7 @@ const TeamData = ({ teamNumber }: { teamNumber: number }) => {
     setIsCommentsModalOpen(false);
   };
 
-  const openWhereDefendModal = () => {
-    setIsWhereDefendModalOpen(true);
-    console.log('whereDefend:', teamData.whereDefend);
-  };
 
-  const closeWhereDefendModal = () => {
-    setIsWhereDefendModalOpen(false);
-  };
 
   const openGameDetailsModal = (game: Game) => {
     setSelectedGame(game);
@@ -125,16 +122,47 @@ const mapTeamDataToJSX = (teamData: Team) => {
           </button>
         </div>
       );
-    } else if (key === 'whereDefend') {
+    }
+    else  if (key === 'foulComments') {
       return (
         <div
           className="flex justify-between items-center py-2 hover:bg-gray-700 px-3 rounded"
         >
-          <span className="font-semibold">Where Defended</span>
+          <span className="font-semibold">Foul Comments</span>
           <button
             key={key}
             className="p-1 rounded bg-gray-600"
-            onClick={openWhereDefendModal}
+            onClick={() => setIsFoulCommentsModalOpen(true)}
+          >
+            {key}
+          </button>
+        </div>
+      );
+    } else  if (key === 'shuttleComments') {
+      return (
+        <div
+          className="flex justify-between items-center py-2 hover:bg-gray-700 px-3 rounded"
+        >
+          <span className="font-semibold">Shuttling Comments</span>
+          <button
+            key={key}
+            className="p-1 rounded bg-gray-600"
+            onClick={() => setIsShuttleCommentsModalOpen(true)}
+          >
+            {key}
+          </button>
+        </div>
+      );
+    } else  if (key === 'whereShot') {
+      return (
+        <div
+          className="flex justify-between items-center py-2 hover:bg-gray-700 px-3 rounded"
+        >
+          <span className="font-semibold">Where Shot</span>
+          <button
+            key={key}
+            className="p-1 rounded bg-gray-600"
+            onClick={() => setIsWhereShotModalOpen(true)}
           >
             {key}
           </button>
@@ -189,12 +217,25 @@ const mapTeamDataToJSX = (teamData: Team) => {
         closeModal={closeCommentsModal}
         comments={teamData.comments}
       />
-      <WhereDefendModal
-        isOpen={isWhereDefendModalOpen}
-        closeModal={closeWhereDefendModal}
-        comments={teamData.whereDefend}
+
+      <CommentsModal
+        isOpen={isFoulCommentsModalOpen}
+        closeModal={() => setIsFoulCommentsModalOpen(false)}
+        comments={teamData.foulComments}
       />
 
+      <CommentsModal
+        isOpen={isShuttleCommentsModalOpen}
+        closeModal={() => setIsShuttleCommentsModalOpen(false)}
+        comments={teamData.shuttleComments}
+      />
+
+      <CommentsModal
+        isOpen={isWhereShotModalOpen}
+        closeModal={()=> setIsWhereShotModalOpen(false)}
+        comments={teamData.whereShot}
+      />
+    
       <GameDetailsModal
         isOpen={gameDetails !== null && selectedGame !== null}
         closeModal={closeGameDetailsModal}

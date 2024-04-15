@@ -91,14 +91,6 @@
           "defaultValue": 0,
           "min": 0,
           "required": false
-        },
-        {
-          "code": "auf",
-          "title": "Number of Auto Foul",
-          "type": "counter",
-          "defaultValue": 0,
-          "min": 0,
-          "required": false
         }
       ]
     },
@@ -151,13 +143,6 @@
           "defaultValue": 0,
           "min": 0,
           "required": false
-        },
-        {
-          "code": "Fou/Tech",
-          "title": "Teleop Foul",
-          "type": "counter",
-          "defaultValue": 0,
-          "required": false
         }
       ]
     },
@@ -196,44 +181,6 @@
           "type": "number",
           "required": false,
           "code": "intakeTime"
-        },
-        {
-          "code": "as",
-          "title": "Rate Amp",
-          "type": "select",
-          "choices": {
-            "1": "1 (worst)",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "10": "10 (Best)"
-          },
-          "defaultValue": "0",
-          "required": false
-        },
-        {
-          "code": "ss",
-          "title": "Rate Speaker",
-          "type": "select",
-          "choices": {
-            "1": "1 (worst)",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "10": "10 (Best)"
-          },
-          "defaultValue": "0",
-          "required": false
         }
       ]
     },
@@ -241,46 +188,8 @@
       "name": "Postmatch",
       "fields": [
         {
-          "code": "wd",
-          "title": "Where Defend",
-          "type": "select",
-          "choices": {
-            "1": "Robots Side Left",
-            "2": "Robots Side Mid",
-            "3": "Robots Side Back",
-            "4": "Middle left",
-            "5": "Middle Mid",
-            "6": "Middle Right",
-            "7": "Opponent Left",
-            "8": "Opponent Mid",
-            "9": "Opponent Right",
-            "x": "Not Observed"
-          },
-          "defaultValue": "0",
-          "required": false
-        },
-        {
           "code": "ds",
           "title": "Defense Score",
-          "type": "select",
-          "choices": {
-            "1": "1 (worst)",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "10": "10 (Best)"
-          },
-          "defaultValue": "0",
-          "required": false
-        },
-        {
-          "code": "os",
-          "title": "Offense Score",
           "type": "select",
           "choices": {
             "1": "1 (worst)",
@@ -334,13 +243,39 @@
             "Red": "Red Card"
           }
         },
-
+        {
+          "code": "ws",
+          "title": "Where Shot",
+          "type": "text",
+          "min": 0,
+          "max": 500,
+          "required": false,
+          "defaultValue": ""
+        },
         {
           "code": "co",
           "title": "Comments",
           "type": "text",
           "min": 0,
-          "max": 50,
+          "max": 500,
+          "required": false,
+          "defaultValue": ""
+        },
+        {
+          "code": "fc",
+          "title": "Foul Comments",
+          "type": "text",
+          "min": 0,
+          "max": 500,
+          "required": false,
+          "defaultValue": ""
+        },
+        {
+          "code": "sc",
+          "title": "Shuttling Comments",
+          "type": "text",
+          "min": 0,
+          "max": 500,
           "required": false,
           "defaultValue": ""
         }

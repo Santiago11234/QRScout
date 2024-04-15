@@ -5,7 +5,7 @@ import Team from '@/types/teams';
 const CategorizeData = () => {
   const [teams, setTeams] = useState<Team[]>([]);
   const [sortCategory, setSortCategory] =
-    useState<keyof Team>('avgOffenseScore'); 
+    useState<keyof Team>('avgDefenseScore'); 
 
   useEffect(() => {
     const fetchTeams = async () => {
