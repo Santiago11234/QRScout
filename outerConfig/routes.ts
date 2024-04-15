@@ -91,7 +91,7 @@ export async function addGame(gameData: Game): Promise<void> {
 
     const newAverages: Partial<Team> = {
       avgNoShow: (teamData.avgNoShow * newGamesPlayed + gameData.noShow) / (newGamesPlayed + 1),
-      avgMobility: (teamData.avgMobility * newGamesPlayed + gameData.mobility) / newGamesPlayed,
+      avgMobility: (teamData.avgMobility * newGamesPlayed + gameData.mobility) / (newGamesPlayed+1),
       avgAutoAmpScored: (teamData.avgAutoAmpScored * newGamesPlayed + gameData.autoAmpScored) / (newGamesPlayed + 1),
       avgAutoAmpMissed: (teamData.avgAutoAmpMissed * newGamesPlayed + gameData.autoAmpMissed) / (newGamesPlayed + 1),
       avgAutoSpeakerScored: (teamData.avgAutoSpeakerScored * newGamesPlayed + gameData.autoSpeakerScored) / (newGamesPlayed + 1),

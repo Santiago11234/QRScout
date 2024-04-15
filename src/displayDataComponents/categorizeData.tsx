@@ -79,7 +79,10 @@ const CategorizeData = () => {
         {teams.map((team, index) => (
           <div key={index} className="flex justify-between items-center mb-2">
             <span>{team.teamNumber}</span>
-            <span>{team[sortCategory]}</span>
+            <div className="justify-center items-center">
+            <span>{Number(team[sortCategory]).toFixed(2)}</span>
+
+            </div>
             <span className="text-lg font-bold">Rank: {index + 1}</span>
           </div>
         ))}

@@ -192,7 +192,7 @@ const mapTeamDataToJSX = (teamData: Team) => {
           className="flex justify-between items-center py-2 hover:bg-gray-700 px-3 rounded"
         >
           <span className="font-semibold">{key}</span>
-          <span>{teamData[key]}</span>
+          <span>{Number(teamData[key]).toFixed(2)}</span>
         </div>
       );
     }
