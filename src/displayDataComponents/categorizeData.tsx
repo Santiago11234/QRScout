@@ -86,7 +86,7 @@ const CategorizeData = () => {
             <span className="text-lg font-bold">Rank: {index + 1}</span>
           </div>
         ))}
-      </div>
+      </div>   
     </div>
   );
 };
