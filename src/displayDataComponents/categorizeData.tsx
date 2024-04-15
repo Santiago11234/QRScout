@@ -45,7 +45,6 @@ const CategorizeData = () => {
         }}
         className="mb-4 px-4 py-2 border border-gray-300 rounded-md shadow-sm text-base focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-black"
       >
-        <option value="avgOffenseScore">Average Offense Score</option>
         <option value="avgDefenseScore">Average Defense Score</option>
         <option value="avgAutoAmpScored">Average Auto Amp Scored</option>
         <option value="avgAutoAmpMissed">Average Auto Amp Missed</option>
@@ -55,7 +54,6 @@ const CategorizeData = () => {
         <option value="avgAutoSpeakerMissed">
           Average Auto Speaker Missed
         </option>
-        <option value="avgAutoAutoFoul">Average Auto Auto Foul</option>
         <option value="avgCoopertition">Average Coopertition</option>
         <option value="avgTeleAmpScored">Average Tele Amp Scored</option>
         <option value="avgTeleAmpMissed">Average Tele Amp Missed</option>
@@ -66,12 +64,12 @@ const CategorizeData = () => {
           Average Tele Speaker Missed
         </option>
         <option value="avgTeleNoteInTrap">Average Tele Note In Trap</option>
-        <option value="avgTeleopFoul">Average Teleop Foul</option>
+        {/* <option value="avgTeleopFoul">Average Teleop Foul</option> */}
         <option value="avgEndPosition">Average End Position</option>
         <option value="avgClimbedTogether">Average Climbed Together</option>
         <option value="avgTimeForIntake">Average Time For Intake</option>
-        <option value="avgAmpRating">Average Amp Rating</option>
-        <option value="avgSpeakerRating">Average Speaker Rating</option>
+        {/* <option value="avgAmpRating">Average Amp Rating</option>
+        <option value="avgSpeakerRating">Average Speaker Rating</option> */}
         <option value="avgUnderStage">Average Under Stage</option>
         <option value="avgDied">Average Died</option>
         <option value="avgTippedOver">Average Tipped Over</option>

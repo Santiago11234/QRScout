@@ -31,10 +31,17 @@ const DataMain = () => {
     team.teamNumber.toString().includes(searchTerm)
  );
 
- const handleTeamClick = (teamNumber: number) => {
-    console.log('Team clicked:', teamNumber)
-    setTeamNumber(teamNumber);
- };
+ useEffect(() => {
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  });
+}, [teamNumber]);
+
+const handleTeamClick = (teamNumber: number) => {
+  console.log('Team clicked:', teamNumber);
+  setTeamNumber(teamNumber);
+};
 
  return (
     <div className="px-4 w-full ">
