@@ -1,23 +1,62 @@
 import { useState, useEffect } from 'preact/hooks';
-import { getAllTeams } from '../../outerConfig/routes';
+import { getAllTeams, getAllGames } from '../../outerConfig/routes';
 import Team from '@/types/teams';
+import Game from '@/types/game';
+
+
+import GameDetailsModal from './gameModal';
+
 
 const CategorizeData = () => {
   const [teams, setTeams] = useState<Team[]>([]);
   const [sortCategory, setSortCategory] =
     useState<keyof Team>('avgDefenseScore'); 
+    const [allGames, setAllGames] = useState<Game[]>([]);
+    const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+    const [gameDetails, setGameDetails] = useState<Game[]>([]);
 
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+
+
+    const openGameDetailsModal = (game: Game) => {
+        setSelectedGame(game);
+      };
+    
+      const closeGameDetailsModal = () => {
+        setSelectedGame(null);
+      };
+
+      const handleSearch = (event: Event) => {
+        const inputValue = (event.target as HTMLInputElement).value;
+        const searchString = "skibidi ";
+        const index = inputValue.indexOf(searchString);
+        if (index !== -1) {
+           setSearchTerm(inputValue.substring(index + searchString.length));
+        } else {
+           setSearchTerm(inputValue);
+        }
+       };
+
+     const filteredInitialGames = allGames
+ .filter((game) => game.scouterInitials === searchTerm)
+ 
+     let value = 1;
+    
   useEffect(() => {
-    const fetchTeams = async () => {
-      try {
-        const fetchedTeams = await getAllTeams();
-        setTeams(fetchedTeams);
-      } catch (error) {
-        console.error('Error fetching teams:', error);
-      }
-    };
-
-    fetchTeams();
+    if(value == 1) {
+        console.log("fetching teams")
+        const fetchTeams = async () => {
+            try {
+              const fetchedTeams = await getAllTeams();
+              setTeams(fetchedTeams);
+            } catch (error) {
+              console.error('Error fetching teams:', error);
+            }
+          };
+          fetchTeams();
+    }
   }, []);
 
   const sortTeams = (category: keyof Team) => {
@@ -32,6 +71,23 @@ const CategorizeData = () => {
     });
     setTeams(sortedTeams);
   };
+
+  let gameValue = 1;
+  useEffect(() => {
+    if(gameValue == 1) {
+        gameValue++;
+        const fetchGames = async () => {
+            try {
+                console.log("fetching games")
+              const fetchedGames = await getAllGames();
+              setAllGames(fetchedGames);
+            } catch (error) {
+              console.error('Error fetching games:', error);
+            }
+          };
+          fetchGames();
+    }
+  }, []);
 
   return (
     <div className="px-4 w-full">
@@ -86,7 +142,37 @@ const CategorizeData = () => {
             <span className="text-lg font-bold">Rank: {index + 1}</span>
           </div>
         ))}
+
+<input
+        type="text"
+        placeholder="Search teams..."
+        value={searchTerm}
+        onInput={handleSearch}
+        className="w-full py-2 border border-gray-300 rounded-md mb-4 text-black"
+      />
+
+{filteredInitialGames.map((game, index) => (
+        <div key={index} className="flex justify-between items-center mb-2">
+          <button
+                key={index}
+                className="p-1 rounded bg-gray-600 mx-1"
+                onClick={() => openGameDetailsModal(game)}
+              >
+                Game {game.gameId.substring(game.gameId.indexOf('-') + 1)}
+              </button>
+          <div className="justify-center items-center">
+            <span>{game.scouterInitials}</span>
+          </div>
+          {/* Add more game details here as needed */}
+        </div>
+      ))}
       </div>   
+
+      <GameDetailsModal
+        isOpen={gameDetails !== null && selectedGame !== null}
+        closeModal={closeGameDetailsModal}
+        gameDetails={selectedGame}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { QRModal } from './components/QR';
@@ -19,6 +19,11 @@ export function App() {
   const [showQR, setShowQR] = useState(false);
   const [scouting, setScouting] = useState(true);
   const [seeCategories, setSeeCategories] = useState(false);
+  const [url, setUrl] = useState<string>('');
+
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, []);
 
   const onCommit = () => {
     setShowQR(true);
@@ -27,7 +32,14 @@ export function App() {
 
   return (
     <div className="min-h-screen py-2 dark:bg-gray-700">
-      <Header />
+
+      { !url.endsWith('3552') ? (
+        <>
+        <h1>You do NOT have access to this :) </h1>
+        </>
+      ) : (
+        <>
+          <Header />
       <main className="flex flex-1 flex-col items-center justify-center px-4 text-center">
         <div className="w-full my-4 flex flex-col md:flex-row sm:flex-row justify-between items-center">
           <h1 className="font-sans text-6xl font-bold text-center w-full">
@@ -98,6 +110,11 @@ export function App() {
         </>}
       </main>
       <Footer />
+        </>
+      )
+
+      }
+    
     </div>
   );
 }

@@ -47,16 +47,6 @@ import Game from "@/types/game";
 // }
 
 
-export async function getAllTeams(): Promise<Team[]> {
- const teamsCollection = collection(db, "teams");
- const teamsSnapshot = await getDocs(teamsCollection);
- const teams: Team[] = [];
- teamsSnapshot.forEach((doc) => {
-    teams.push(doc.data() as Team);
- });
- return teams;
-}
-
 
 export async function getTeamByNumber(teamNumber: number): Promise<Team | null> {
    const teamsCollection = collection(db, "teams");
@@ -181,6 +171,27 @@ export async function getGameById(gameId: string): Promise<Game | null> {
     console.log("No game found with the provided gameId!");
     return null;
  }
+}
+
+
+export async function getAllTeams(): Promise<Team[]> {
+   const teamsCollection = collection(db, "teams");
+   const teamsSnapshot = await getDocs(teamsCollection);
+   const teams: Team[] = [];
+   teamsSnapshot.forEach((doc) => {
+      teams.push(doc.data() as Team);
+   });
+   return teams;
+  }
+  
+export async function getAllGames(): Promise<Game[]> {
+ const gamesCollection = collection(db, "games");
+ const gamesSnapshot = await getDocs(gamesCollection);
+ const games: Game[] = [];
+ gamesSnapshot.forEach((doc) => {
+    games.push(doc.data() as Game);
+ });
+ return games;
 }
 
 
